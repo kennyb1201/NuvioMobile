@@ -3,6 +3,7 @@ package com.nuvio.app.features.settings
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CollectionsBookmark
+import androidx.compose.material.icons.rounded.Tv
 import androidx.compose.material.icons.rounded.Extension
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Hub
@@ -30,6 +31,7 @@ internal fun LazyListScope.contentDiscoveryContent(
     onHomescreenClick: () -> Unit,
     onMetaScreenClick: () -> Unit,
     onCollectionsClick: () -> Unit = {},
+    onIptvClick: () -> Unit = {},
 ) {
     item {
         SettingsSection(

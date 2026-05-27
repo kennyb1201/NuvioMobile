@@ -236,6 +236,9 @@ data class EntityBrowseRoute(
 )
 
 @Serializable
+object IptvRoute
+
+@Serializable
 object HomescreenSettingsRoute
 
 @Serializable
@@ -2012,6 +2015,14 @@ private fun MainAppContent(
                         onBack = onBack,
                     )
                 }
+                composable<IptvRoute> {
+                    com.nuvio.app.features.iptv.ui.IptvScreen(
+                        onChannelClick = { streamUrl, channelName ->
+                            // TODO: integrate with NuvioMobile player
+                        }
+                    )
+                }
+
                 composable<MetaScreenSettingsRoute> { backStackEntry ->
                     val onBack = rememberGuardedPopBackStack(
                         navController = navController,

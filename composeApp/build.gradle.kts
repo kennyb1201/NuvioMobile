@@ -154,6 +154,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.ksp)
 }
 
 val supabaseProps = Properties().apply {
@@ -246,6 +247,16 @@ kotlin {
             kotlin.srcDir(generatedRuntimeConfigDir)
         }
         androidMain.dependencies {
+        // IPTV - Room database
+        implementation("androidx.room:room-runtime:2.7.1")
+        implementation("androidx.room:room-ktx:2.7.1")
+        ksp("androidx.room:room-compiler:2.7.1")
+
+        // IPTV - OkHttp for M3U/EPG downloads
+        implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+        // IPTV - LiveData Compose
+        implementation("androidx.compose.runtime:runtime-livedata:1.7.8")
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.appcompat)
             implementation(libs.androidx.activity.compose)
