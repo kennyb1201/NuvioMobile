@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -19,13 +20,43 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Show Java version
+        run: java -version
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Show Gradle version
+        run: ./gradlew --version
+
+      - name: Show build.gradle.kts line 155-160
+        run: sed -n '150,165p' composeApp/build.gradle.kts
+
+      - name: List project structure
+        run: find composeApp/src -name "*.kt" | grep -i iptv | head -20
+
+      - name: Check for compile errors
+        run: ./gradlew :composeApp:compileDebugKotlin --no-daemon --stacktrace 2>&1 | tee compile.log | tail -80
+
+      - name: Upload compile log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: compile-log
+          path: compile.log
+
       - name: Build Debug APK
-        run: ./gradlew :composeApp:assembleDebug --no-daemon
+        run: ./gradlew :composeApp:assembleDebug --no-daemon --stacktrace 2>&1 | tee build.log | tail -80
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
 
       - name: Upload APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: debug-apk

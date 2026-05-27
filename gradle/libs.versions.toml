@@ -17,6 +17,7 @@ coil = "3.5.0-beta01"
 kermit = "2.0.5"
 junit = "4.13.2"
 kotlin = "2.3.0"
+ksp = "2.3.0-1.0.24"
 kotlinx-serialization = "1.8.1"
 ktor = "3.4.1"
 material3 = "1.11.0-alpha07"
@@ -82,5 +83,6 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
